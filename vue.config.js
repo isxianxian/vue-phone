@@ -77,7 +77,7 @@ module.exports = {
     // http 代理配置
     proxy: {
       '/api': {
-        target: 'https://yunxuer.com',
+        target: '',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
