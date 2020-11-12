@@ -1,0 +1,188 @@
+/*
+*   以变量为基础配置的变量类名
+*/
+
+@import "./_variable.scss";
+
+@each $colorkey, $colorval in $color {
+  .txt-#{$colorkey} {
+    color: $colorval;
+  }
+  .bg-#{$colorkey} {
+    background-color: $colorval;
+  }
+  a.txt-#{$colorkey} {
+    color: $colorval !important;
+  }
+}
+
+@each $name, $size in $font-size {
+  .fs-#{$name} {
+    font-size: $size;
+  }
+}
+
+@each $spacename, $spaceval in $space-types {
+  @each $sizename, $sizeval in $space-size {
+    // .mt-0
+    @each $dirname, $dirval in $direction {
+      .#{$spacename}#{$dirname}-#{$sizename} {
+        #{$spaceval}-#{$dirval}: $sizeval;
+      }
+    }
+    // .m-0
+    .#{$spacename}-#{$sizename} {
+      // 属性名必须是字符串，所以要加上#{}
+      #{$spaceval}: $sizeval;
+    }
+    // .mx-0
+    .#{$spacename}x-#{$sizename} {
+      // 属性名必须是字符串，所以要加上#{}
+      #{$spaceval}-left: $sizeval;
+      #{$spaceval}-right: $sizeval;
+    }
+    // .my-0
+    .#{$spacename}y-#{$sizename} {
+      // 属性名必须是字符串，所以要加上#{}
+      #{$spaceval}-top: $sizeval;
+      #{$spaceval}-bottom: $sizeval;
+    }
+  }
+}
+
+@each $posname, $posval in $pos {
+  .pos-#{$posname} {
+    position: #{$posval};
+  }
+}
+
+@each $jusname, $jusval in $jus {
+  .jus-#{$jusname} {
+    justify-content: #{$jusval};
+  }
+}
+
+@each $aliname, $alival in $align {
+  .ali-#{$aliname} {
+    align-items: #{$alival};
+  }
+}
+
+@each $linename, $lineval in $line-height {
+  .lh-#{$linename} {
+    line-height: #{$lineval};
+  }
+}
+
+@each $overname, $overval in $over {
+  .over-#{$overname} {
+    overflow: #{$overval};
+  }
+}
+
+@each $dirname, $dirval in $direction {
+  .bor-#{$dirname} {
+    border-#{$dirval}: $border-width solid $border-color; /* no */
+  }
+}
+
+// mixins
+@function color($name) {
+  @return map-get($color, $name);
+}
+
+// 通用样式片段
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+.border {
+  border: $border-width solid $border-color; /* no */
+}
+.bor-rad5 {
+  border-radius: 8px;
+}
+.bor-round {
+  border-radius: 50%;
+}
+.bor-shadow {
+  box-shadow: 1px 3px 13px 0px rgba(0, 0, 0, 0.1); /* no */
+}
+
+.fs-bold {
+  font-weight: 700;
+}
+.m-auto {
+  margin: 0 auto;
+}
+.box-size {
+  box-sizing: border-box;
+}
+
+.txt-cen {
+  text-align: center;
+}
+.txt-l {
+  text-align: left;
+}
+.txt-r {
+  text-align: right;
+}
+.one-elli {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.more-elli {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pos-all {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.pos-cen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// flex
+.flex {
+  display: flex;
+}
+.line-flex {
+  display: inline-flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.flex-normal {
+  flex-shrink: 0;
+}
